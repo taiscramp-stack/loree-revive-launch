@@ -190,8 +190,8 @@ function Landing() {
 
 function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-hero px-6 py-20">
-      <Particles count={28} />
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-breathe px-6 py-20">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,oklch(0.32_0.13_268/0.5)_0%,transparent_70%)]" />
       <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
         <Reveal>
           <Logo size="md" />
@@ -233,20 +233,19 @@ function Product() {
       <div className="mx-auto grid max-w-6xl gap-16 md:grid-cols-2 md:items-center">
         <Reveal>
           <div className="relative">
-            <div className="absolute -inset-8 rounded-full bg-gold/10 blur-3xl" />
             <img
-              src={bottleImg}
+              src={bottleAsset.url}
               alt="Frasco Skin Revive Sérum Facial L'Orée 30ml"
               width={1024}
               height={1536}
               loading="lazy"
-              className="relative mx-auto max-h-[680px] w-auto rounded-sm shadow-luxe"
+              className="relative mx-auto max-h-[820px] w-auto rounded-sm shadow-product"
             />
           </div>
         </Reveal>
 
         <Reveal delay={150}>
-          <p className="font-display text-xs uppercase tracking-[0.4em] text-gold-soft">Nouveauté</p>
+          <p className="section-label">Nouveauté</p>
           <h2 className="mt-4 font-display text-5xl text-gold md:text-6xl">Skin Revive</h2>
           <p className="mt-3 font-logo text-2xl italic text-pearl/90">Sérum Facial · 30ml</p>
 
