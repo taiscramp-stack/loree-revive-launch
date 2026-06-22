@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import bottleImg from "@/assets/skin-revive-bottle.jpg";
+import bottleAsset from "@/assets/skin-revive-bottle.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Landing,
@@ -54,18 +54,27 @@ function Particles({ count = 24 }: { count?: number }) {
 
 function Logo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
   const sizes = {
-    sm: { name: "text-3xl", sub: "text-[10px]" },
-    md: { name: "text-5xl md:text-6xl", sub: "text-xs md:text-sm" },
-    lg: { name: "text-6xl md:text-7xl", sub: "text-sm md:text-base" },
+    sm: { name: "text-3xl md:text-4xl", sub: "text-[9px]", line: "w-20", leaf: "h-3 w-4 -top-1 -right-3" },
+    md: { name: "text-6xl md:text-7xl", sub: "text-[11px] md:text-xs", line: "w-32 md:w-40", leaf: "h-5 w-6 md:h-6 md:w-8 -top-2 -right-5 md:-top-3 md:-right-6" },
+    lg: { name: "text-7xl md:text-8xl", sub: "text-xs md:text-sm", line: "w-40 md:w-52", leaf: "h-6 w-8 md:h-8 md:w-10 -top-3 -right-6 md:-top-4 md:-right-8" },
   }[size];
   return (
     <div className="flex flex-col items-center">
-      <div className="flex items-end gap-1">
-        <span className={`font-logo italic text-gold ${sizes.name} leading-none`}>L&rsquo;Orée</span>
-        <LeafIcon className="mb-2 h-6 w-8 text-gold md:h-8 md:w-10" />
+      <div className="relative inline-block">
+        <span
+          className={`font-logo italic ${sizes.name} leading-none`}
+          style={{ color: "#D4AF6A" }}
+        >
+          L&rsquo;Or&eacute;e
+        </span>
+        <LeafIcon className={`absolute ${sizes.leaf} -rotate-12`} />
       </div>
-      <span className={`mt-2 font-display tracking-[0.4em] text-gold-soft ${sizes.sub} uppercase`}>
-        Science &amp; Beauté
+      <div className={`mt-3 h-px ${sizes.line}`} style={{ backgroundColor: "#D4AF6A", opacity: 0.5 }} />
+      <span
+        className={`mt-3 font-body font-light uppercase ${sizes.sub}`}
+        style={{ color: "#D4AF6A", letterSpacing: "0.3em" }}
+      >
+        Science &amp; Beaut&eacute;
       </span>
     </div>
   );
@@ -73,17 +82,16 @@ function Logo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
 
 function LeafIcon({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 40 32" fill="none" className={className} aria-hidden="true">
+    <svg viewBox="0 0 40 28" fill="none" className={className} aria-hidden="true" style={{ color: "#D4AF6A" }}>
       <path
-        d="M2 28 C 10 18, 22 6, 38 4 C 34 16, 24 26, 2 28 Z"
+        d="M4 24 C 10 14, 20 4, 36 2 C 32 12, 22 22, 4 24 Z"
         fill="currentColor"
         opacity="0.95"
       />
       <path
-        d="M14 26 C 18 18, 26 10, 36 6"
-        stroke="oklch(0.20 0.11 268)"
-        strokeWidth="0.6"
-        fill="none"
+        d="M8 26 C 14 18, 24 10, 34 6 C 30 16, 22 24, 8 26 Z"
+        fill="currentColor"
+        opacity="0.7"
       />
     </svg>
   );
@@ -182,8 +190,8 @@ function Landing() {
 
 function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-hero px-6 py-20">
-      <Particles count={28} />
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-breathe px-6 py-20">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,oklch(0.32_0.13_268/0.5)_0%,transparent_70%)]" />
       <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
         <Reveal>
           <Logo size="md" />
@@ -225,20 +233,19 @@ function Product() {
       <div className="mx-auto grid max-w-6xl gap-16 md:grid-cols-2 md:items-center">
         <Reveal>
           <div className="relative">
-            <div className="absolute -inset-8 rounded-full bg-gold/10 blur-3xl" />
             <img
-              src={bottleImg}
+              src={bottleAsset.url}
               alt="Frasco Skin Revive Sérum Facial L'Orée 30ml"
               width={1024}
               height={1536}
               loading="lazy"
-              className="relative mx-auto max-h-[680px] w-auto rounded-sm shadow-luxe"
+              className="relative mx-auto max-h-[820px] w-auto rounded-sm shadow-product"
             />
           </div>
         </Reveal>
 
         <Reveal delay={150}>
-          <p className="font-display text-xs uppercase tracking-[0.4em] text-gold-soft">Nouveauté</p>
+          <p className="section-label">Nouveauté</p>
           <h2 className="mt-4 font-display text-5xl text-gold md:text-6xl">Skin Revive</h2>
           <p className="mt-3 font-logo text-2xl italic text-pearl/90">Sérum Facial · 30ml</p>
 
@@ -280,7 +287,7 @@ function Ingredients() {
     <section className="relative bg-sapphire-deep px-6 py-28">
       <div className="mx-auto max-w-6xl">
         <Reveal>
-          <p className="text-center font-display text-xs uppercase tracking-[0.4em] text-gold-soft">Formulation</p>
+          <p className="section-label text-center">Formulation</p>
           <h2 className="mt-4 text-center font-display text-3xl text-pearl md:text-5xl">
             A Ciência por Trás da Fórmula
           </h2>
@@ -315,7 +322,7 @@ function Benefits() {
     <section className="relative bg-sapphire-deep px-6 py-28">
       <div className="mx-auto max-w-6xl">
         <Reveal>
-          <p className="text-center font-display text-xs uppercase tracking-[0.4em] text-gold-soft">Resultados</p>
+          <p className="section-label text-center">Resultados</p>
           <h2 className="mt-4 text-center font-display text-3xl text-pearl md:text-5xl">
             O Que Você Vai Sentir
           </h2>
@@ -344,9 +351,11 @@ function Scarcity() {
     <section id="scarcity" className="relative overflow-hidden bg-gold-gradient px-6 py-28">
       <div className="mx-auto max-w-3xl text-center text-sapphire-deep">
         <Reveal>
-          <p className="font-display text-xs uppercase tracking-[0.4em] opacity-70">Édition Limitée</p>
-          <h2 className="mt-4 font-display text-5xl text-sapphire-deep md:text-7xl">
-            Apenas 20 Unidades
+          <p className="section-label">Édition Limitée</p>
+          <h2 className="mt-6 font-display text-sapphire-deep">
+            <span className="block text-3xl uppercase tracking-[0.2em] md:text-4xl">Apenas</span>
+            <span className="mt-2 block font-logo text-[11rem] font-medium leading-none italic md:text-[16rem]">20</span>
+            <span className="mt-2 block text-3xl uppercase tracking-[0.2em] md:text-4xl">Unidades</span>
           </h2>
           <p className="mx-auto mt-8 max-w-xl text-base font-light leading-relaxed opacity-90 md:text-lg">
             Este é o primeiro lote da L&rsquo;Orée. Uma vez esgotado, o próximo lote não tem data confirmada.
@@ -387,7 +396,7 @@ function Mission() {
       <Particles count={14} />
       <div className="relative z-10 mx-auto max-w-3xl text-center">
         <Reveal>
-          <p className="font-display text-xs uppercase tracking-[0.4em] text-gold-soft">Manifesto</p>
+          <p className="section-label">Manifesto</p>
           <h2 className="mt-4 font-display text-4xl text-gold md:text-5xl">Nossa Missão</h2>
           <div className="mx-auto mt-8 h-px w-24 bg-gold/60" />
         </Reveal>
@@ -429,36 +438,38 @@ function FAQ() {
     <section className="relative bg-sapphire-deep px-6 py-28">
       <div className="mx-auto max-w-3xl">
         <Reveal>
-          <p className="text-center font-display text-xs uppercase tracking-[0.4em] text-gold-soft">Suporte</p>
+          <p className="section-label text-center">Suporte</p>
           <h2 className="mt-4 text-center font-display text-3xl text-pearl md:text-5xl">
             Perguntas Frequentes
           </h2>
           <div className="mx-auto mt-8 h-px w-24 bg-gold/60" />
         </Reveal>
 
-        <div className="mt-14 divide-y divide-gold/20 border-y border-gold/20">
+        <div className="mt-14 border-y" style={{ borderColor: "rgba(212, 175, 106, 0.3)" }}>
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
               <Reveal key={f.q} delay={i * 60}>
-                <button
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  className="group flex w-full items-center justify-between gap-6 py-6 text-left transition-colors hover:text-gold"
-                >
-                  <span className="font-display text-sm uppercase tracking-[0.12em] text-pearl group-hover:text-gold md:text-base">
-                    {f.q}
-                  </span>
-                  <span className={`shrink-0 font-logo text-3xl text-gold transition-transform duration-500 ${isOpen ? "rotate-45" : ""}`}>
-                    +
-                  </span>
-                </button>
-                <div
-                  className="overflow-hidden transition-all duration-500 ease-out"
-                  style={{ maxHeight: isOpen ? 200 : 0, opacity: isOpen ? 1 : 0 }}
-                >
-                  <p className="pb-6 pr-12 text-sm font-light leading-relaxed text-pearl/75 md:text-base">
-                    {f.a}
-                  </p>
+                <div className={i > 0 ? "border-t" : ""} style={i > 0 ? { borderColor: "rgba(212, 175, 106, 0.3)" } : undefined}>
+                  <button
+                    onClick={() => setOpen(isOpen ? null : i)}
+                    className="group flex w-full items-center justify-between gap-6 py-6 text-left transition-colors hover:text-gold"
+                  >
+                    <span className="font-display text-sm uppercase tracking-[0.12em] text-pearl group-hover:text-gold md:text-base">
+                      {f.q}
+                    </span>
+                    <span className={`shrink-0 font-logo text-3xl text-gold transition-transform duration-300 ease-out ${isOpen ? "rotate-45" : ""}`}>
+                      +
+                    </span>
+                  </button>
+                  <div
+                    className="overflow-hidden transition-all duration-300 ease-out"
+                    style={{ maxHeight: isOpen ? 200 : 0, opacity: isOpen ? 1 : 0 }}
+                  >
+                    <p className="pb-6 pr-12 text-sm font-light leading-relaxed text-pearl/75 md:text-base">
+                      {f.a}
+                    </p>
+                  </div>
                 </div>
               </Reveal>
             );
@@ -501,19 +512,35 @@ function FinalCTA() {
   );
 }
 
+function InstagramIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className} aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 function Footer() {
   return (
-    <footer className="bg-sapphire-deep border-t border-gold/20 px-6 py-12">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 text-center">
-        <div className="flex items-center gap-2">
-          <span className="font-logo text-2xl italic text-gold">L&rsquo;Orée</span>
-          <LeafIcon className="h-4 w-5 text-gold" />
-        </div>
-        <p className="font-display text-[10px] uppercase tracking-[0.35em] text-gold-soft md:text-xs">
-          Science &amp; Beauté · Ciência que renova, beleza que revela.
+    <footer className="bg-sapphire-deep px-6 py-14" style={{ borderTop: "1px solid #D4AF6A" }}>
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 text-center">
+        <Logo size="sm" />
+        <p className="mt-2 font-logo italic text-base md:text-lg" style={{ color: "#D4AF6A" }}>
+          Ciência que renova, beleza que revela.
         </p>
-        <p className="mt-4 text-[10px] font-light uppercase tracking-[0.2em] text-pearl/40">
-          © {new Date().getFullYear()} L&rsquo;Orée. Todos os direitos reservados.
+        <a
+          href="https://instagram.com/loreescience"
+          className="mt-2 inline-flex items-center gap-2 text-sm font-light tracking-[0.18em] transition-opacity hover:opacity-70"
+          style={{ color: "#D4AF6A" }}
+        >
+          <InstagramIcon className="h-4 w-4" />
+          <span>@loreescience</span>
+        </a>
+        <div className="mt-4 h-px w-24" style={{ backgroundColor: "#D4AF6A", opacity: 0.3 }} />
+        <p className="mt-2 text-[10px] font-light uppercase tracking-[0.25em] text-pearl/40">
+          © {new Date().getFullYear()} L&rsquo;Orée Science &amp; Beauté · Todos os direitos reservados
         </p>
       </div>
     </footer>
