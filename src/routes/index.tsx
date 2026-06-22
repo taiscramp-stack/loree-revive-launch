@@ -450,24 +450,26 @@ function FAQ() {
             const isOpen = open === i;
             return (
               <Reveal key={f.q} delay={i * 60}>
-                <button
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  className="group flex w-full items-center justify-between gap-6 py-6 text-left transition-colors hover:text-gold"
-                >
-                  <span className="font-display text-sm uppercase tracking-[0.12em] text-pearl group-hover:text-gold md:text-base">
-                    {f.q}
-                  </span>
-                  <span className={`shrink-0 font-logo text-3xl text-gold transition-transform duration-500 ${isOpen ? "rotate-45" : ""}`}>
-                    +
-                  </span>
-                </button>
-                <div
-                  className="overflow-hidden transition-all duration-500 ease-out"
-                  style={{ maxHeight: isOpen ? 200 : 0, opacity: isOpen ? 1 : 0 }}
-                >
-                  <p className="pb-6 pr-12 text-sm font-light leading-relaxed text-pearl/75 md:text-base">
-                    {f.a}
-                  </p>
+                <div className={i > 0 ? "border-t" : ""} style={i > 0 ? { borderColor: "rgba(212, 175, 106, 0.3)" } : undefined}>
+                  <button
+                    onClick={() => setOpen(isOpen ? null : i)}
+                    className="group flex w-full items-center justify-between gap-6 py-6 text-left transition-colors hover:text-gold"
+                  >
+                    <span className="font-display text-sm uppercase tracking-[0.12em] text-pearl group-hover:text-gold md:text-base">
+                      {f.q}
+                    </span>
+                    <span className={`shrink-0 font-logo text-3xl text-gold transition-transform duration-300 ease-out ${isOpen ? "rotate-45" : ""}`}>
+                      +
+                    </span>
+                  </button>
+                  <div
+                    className="overflow-hidden transition-all duration-300 ease-out"
+                    style={{ maxHeight: isOpen ? 200 : 0, opacity: isOpen ? 1 : 0 }}
+                  >
+                    <p className="pb-6 pr-12 text-sm font-light leading-relaxed text-pearl/75 md:text-base">
+                      {f.a}
+                    </p>
+                  </div>
                 </div>
               </Reveal>
             );
