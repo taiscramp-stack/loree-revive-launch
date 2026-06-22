@@ -512,19 +512,35 @@ function FinalCTA() {
   );
 }
 
+function InstagramIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className} aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 function Footer() {
   return (
-    <footer className="bg-sapphire-deep border-t border-gold/20 px-6 py-12">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 text-center">
-        <div className="flex items-center gap-2">
-          <span className="font-logo text-2xl italic text-gold">L&rsquo;Orée</span>
-          <LeafIcon className="h-4 w-5 text-gold" />
-        </div>
-        <p className="font-display text-[10px] uppercase tracking-[0.35em] text-gold-soft md:text-xs">
-          Science &amp; Beauté · Ciência que renova, beleza que revela.
+    <footer className="bg-sapphire-deep px-6 py-14" style={{ borderTop: "1px solid #D4AF6A" }}>
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 text-center">
+        <Logo size="sm" />
+        <p className="mt-2 font-logo italic text-base md:text-lg" style={{ color: "#D4AF6A" }}>
+          Ciência que renova, beleza que revela.
         </p>
-        <p className="mt-4 text-[10px] font-light uppercase tracking-[0.2em] text-pearl/40">
-          © {new Date().getFullYear()} L&rsquo;Orée. Todos os direitos reservados.
+        <a
+          href="https://instagram.com/loreescience"
+          className="mt-2 inline-flex items-center gap-2 text-sm font-light tracking-[0.18em] transition-opacity hover:opacity-70"
+          style={{ color: "#D4AF6A" }}
+        >
+          <InstagramIcon className="h-4 w-4" />
+          <span>@loreescience</span>
+        </a>
+        <div className="mt-4 h-px w-24" style={{ backgroundColor: "#D4AF6A", opacity: 0.3 }} />
+        <p className="mt-2 text-[10px] font-light uppercase tracking-[0.25em] text-pearl/40">
+          © {new Date().getFullYear()} L&rsquo;Orée Science &amp; Beauté · Todos os direitos reservados
         </p>
       </div>
     </footer>
