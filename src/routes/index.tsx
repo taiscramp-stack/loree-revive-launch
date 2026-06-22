@@ -287,7 +287,7 @@ function Ingredients() {
     <section className="relative bg-sapphire-deep px-6 py-28">
       <div className="mx-auto max-w-6xl">
         <Reveal>
-          <p className="text-center font-display text-xs uppercase tracking-[0.4em] text-gold-soft">Formulation</p>
+          <p className="section-label text-center">Formulation</p>
           <h2 className="mt-4 text-center font-display text-3xl text-pearl md:text-5xl">
             A Ciência por Trás da Fórmula
           </h2>
@@ -322,7 +322,7 @@ function Benefits() {
     <section className="relative bg-sapphire-deep px-6 py-28">
       <div className="mx-auto max-w-6xl">
         <Reveal>
-          <p className="text-center font-display text-xs uppercase tracking-[0.4em] text-gold-soft">Resultados</p>
+          <p className="section-label text-center">Resultados</p>
           <h2 className="mt-4 text-center font-display text-3xl text-pearl md:text-5xl">
             O Que Você Vai Sentir
           </h2>
@@ -394,7 +394,7 @@ function Mission() {
       <Particles count={14} />
       <div className="relative z-10 mx-auto max-w-3xl text-center">
         <Reveal>
-          <p className="font-display text-xs uppercase tracking-[0.4em] text-gold-soft">Manifesto</p>
+          <p className="section-label">Manifesto</p>
           <h2 className="mt-4 font-display text-4xl text-gold md:text-5xl">Nossa Missão</h2>
           <div className="mx-auto mt-8 h-px w-24 bg-gold/60" />
         </Reveal>
@@ -436,7 +436,7 @@ function FAQ() {
     <section className="relative bg-sapphire-deep px-6 py-28">
       <div className="mx-auto max-w-3xl">
         <Reveal>
-          <p className="text-center font-display text-xs uppercase tracking-[0.4em] text-gold-soft">Suporte</p>
+          <p className="section-label text-center">Suporte</p>
           <h2 className="mt-4 text-center font-display text-3xl text-pearl md:text-5xl">
             Perguntas Frequentes
           </h2>
