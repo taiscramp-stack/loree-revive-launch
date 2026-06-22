@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import bottleImg from "@/assets/skin-revive-bottle.jpg";
+import bottleAsset from "@/assets/skin-revive-bottle.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Landing,
@@ -54,18 +54,27 @@ function Particles({ count = 24 }: { count?: number }) {
 
 function Logo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
   const sizes = {
-    sm: { name: "text-3xl", sub: "text-[10px]" },
-    md: { name: "text-5xl md:text-6xl", sub: "text-xs md:text-sm" },
-    lg: { name: "text-6xl md:text-7xl", sub: "text-sm md:text-base" },
+    sm: { name: "text-3xl md:text-4xl", sub: "text-[9px]", line: "w-20", leaf: "h-3 w-4 -top-1 -right-3" },
+    md: { name: "text-6xl md:text-7xl", sub: "text-[11px] md:text-xs", line: "w-32 md:w-40", leaf: "h-5 w-6 md:h-6 md:w-8 -top-2 -right-5 md:-top-3 md:-right-6" },
+    lg: { name: "text-7xl md:text-8xl", sub: "text-xs md:text-sm", line: "w-40 md:w-52", leaf: "h-6 w-8 md:h-8 md:w-10 -top-3 -right-6 md:-top-4 md:-right-8" },
   }[size];
   return (
     <div className="flex flex-col items-center">
-      <div className="flex items-end gap-1">
-        <span className={`font-logo italic text-gold ${sizes.name} leading-none`}>L&rsquo;Orée</span>
-        <LeafIcon className="mb-2 h-6 w-8 text-gold md:h-8 md:w-10" />
+      <div className="relative inline-block">
+        <span
+          className={`font-logo italic ${sizes.name} leading-none`}
+          style={{ color: "#D4AF6A" }}
+        >
+          L&rsquo;Or&eacute;e
+        </span>
+        <LeafIcon className={`absolute ${sizes.leaf} -rotate-12`} />
       </div>
-      <span className={`mt-2 font-display tracking-[0.4em] text-gold-soft ${sizes.sub} uppercase`}>
-        Science &amp; Beauté
+      <div className={`mt-3 h-px ${sizes.line}`} style={{ backgroundColor: "#D4AF6A", opacity: 0.5 }} />
+      <span
+        className={`mt-3 font-body font-light uppercase ${sizes.sub}`}
+        style={{ color: "#D4AF6A", letterSpacing: "0.3em" }}
+      >
+        Science &amp; Beaut&eacute;
       </span>
     </div>
   );
@@ -73,17 +82,16 @@ function Logo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
 
 function LeafIcon({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 40 32" fill="none" className={className} aria-hidden="true">
+    <svg viewBox="0 0 40 28" fill="none" className={className} aria-hidden="true" style={{ color: "#D4AF6A" }}>
       <path
-        d="M2 28 C 10 18, 22 6, 38 4 C 34 16, 24 26, 2 28 Z"
+        d="M4 24 C 10 14, 20 4, 36 2 C 32 12, 22 22, 4 24 Z"
         fill="currentColor"
         opacity="0.95"
       />
       <path
-        d="M14 26 C 18 18, 26 10, 36 6"
-        stroke="oklch(0.20 0.11 268)"
-        strokeWidth="0.6"
-        fill="none"
+        d="M8 26 C 14 18, 24 10, 34 6 C 30 16, 22 24, 8 26 Z"
+        fill="currentColor"
+        opacity="0.7"
       />
     </svg>
   );
