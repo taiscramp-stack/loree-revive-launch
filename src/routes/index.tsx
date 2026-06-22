@@ -351,9 +351,11 @@ function Scarcity() {
     <section id="scarcity" className="relative overflow-hidden bg-gold-gradient px-6 py-28">
       <div className="mx-auto max-w-3xl text-center text-sapphire-deep">
         <Reveal>
-          <p className="font-display text-xs uppercase tracking-[0.4em] opacity-70">Édition Limitée</p>
-          <h2 className="mt-4 font-display text-5xl text-sapphire-deep md:text-7xl">
-            Apenas 20 Unidades
+          <p className="section-label">Édition Limitée</p>
+          <h2 className="mt-6 font-display text-sapphire-deep">
+            <span className="block text-3xl uppercase tracking-[0.2em] md:text-4xl">Apenas</span>
+            <span className="mt-2 block font-logo text-[11rem] font-medium leading-none italic md:text-[16rem]">20</span>
+            <span className="mt-2 block text-3xl uppercase tracking-[0.2em] md:text-4xl">Unidades</span>
           </h2>
           <p className="mx-auto mt-8 max-w-xl text-base font-light leading-relaxed opacity-90 md:text-lg">
             Este é o primeiro lote da L&rsquo;Orée. Uma vez esgotado, o próximo lote não tem data confirmada.
@@ -443,7 +445,7 @@ function FAQ() {
           <div className="mx-auto mt-8 h-px w-24 bg-gold/60" />
         </Reveal>
 
-        <div className="mt-14 divide-y divide-gold/20 border-y border-gold/20">
+        <div className="mt-14 border-y" style={{ borderColor: "rgba(212, 175, 106, 0.3)" }}>
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
