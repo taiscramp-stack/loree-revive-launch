@@ -1,11 +1,36 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode, type FormEvent } from "react";
 import bottleAsset from "@/assets/skin-revive-bottle.jpg.asset.json";
 import loreeLogo from "@/assets/loree-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Landing,
 });
+
+// TODO: replace with real Mercado Pago payment link
+const PAYMENT_LINK = "#payment-link";
+// TODO: replace with real webhook URL for capturing leads
+const WEBHOOK_URL = "#webhook-url";
+
+function openOrderModal() {
+  window.dispatchEvent(new CustomEvent("open-order-modal"));
+}
+
+function CtaButton({
+  children,
+  className = "btn-gold mt-12",
+  style,
+}: {
+  children: ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  return (
+    <button type="button" onClick={openOrderModal} className={className} style={style}>
+      {children}
+    </button>
+  );
+}
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
