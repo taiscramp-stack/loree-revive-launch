@@ -548,3 +548,240 @@ function Footer() {
     </footer>
   );
 }
+
+/* ---------------- Order Modal ---------------- */
+function LockIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className} aria-hidden="true">
+      <rect x="4" y="11" width="16" height="10" rx="2" />
+      <path d="M8 11V8a4 4 0 0 1 8 0v3" />
+    </svg>
+  );
+}
+
+type FormState = { nome: string; email: string; whatsapp: string; cep: string; consent: boolean };
+type FormErrors = Partial<Record<keyof FormState, string>>;
+
+function maskPhone(v: string) {
+  const d = v.replace(/\D/g, "").slice(0, 11);
+  if (d.length <= 2) return d.length ? `(${d}` : "";
+  if (d.length <= 7) return `(${d.slice(0, 2)}) ${d.slice(2)}`;
+  return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+}
+function maskCep(v: string) {
+  return v.replace(/\D/g, "").slice(0, 8);
+}
+
+function OrderModal() {
+  const [open, setOpen] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [form, setForm] = useState<FormState>({ nome: "", email: "", whatsapp: "", cep: "", consent: false });
+  const [errors, setErrors] = useState<FormErrors>({});
+
+  useEffect(() => {
+    const onOpen = () => setOpen(true);
+    window.addEventListener("open-order-modal", onOpen);
+    return () => window.removeEventListener("open-order-modal", onOpen);
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
+  function validate(): FormErrors {
+    const e: FormErrors = {};
+    if (!form.nome.trim() || form.nome.trim().length < 2) e.nome = "Informe seu nome completo";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) e.email = "E-mail inválido";
+    if (form.whatsapp.replace(/\D/g, "").length < 10) e.whatsapp = "WhatsApp com DDD inválido";
+    if (form.cep.replace(/\D/g, "").length !== 8) e.cep = "CEP deve ter 8 dígitos";
+    if (!form.consent) e.consent = "É necessário concordar para continuar";
+    return e;
+  }
+
+  async function onSubmit(ev: FormEvent<HTMLFormElement>) {
+    ev.preventDefault();
+    const errs = validate();
+    setErrors(errs);
+    if (Object.keys(errs).length > 0) return;
+    setSubmitting(true);
+    const payload = {
+      nome: form.nome.trim(),
+      email: form.email.trim(),
+      whatsapp: form.whatsapp,
+      cep: form.cep,
+      consent: form.consent,
+      produto: "Skin Revive Sérum Facial 30ml",
+      valor: 159.9,
+      origem: "landing-loree",
+      submittedAt: new Date().toISOString(),
+    };
+    try {
+      // Fire-and-forget webhook; redirect to payment regardless
+      void fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        mode: "no-cors",
+        keepalive: true,
+      }).catch(() => {});
+    } finally {
+      window.location.href = PAYMENT_LINK;
+    }
+  }
+
+  if (!open) return null;
+
+  const inputClass =
+    "w-full bg-transparent border border-gold/40 px-4 py-3 text-pearl placeholder:text-pearl/40 outline-none transition-colors focus:border-gold font-body text-sm rounded-[3px]";
+  const labelClass = "block text-[11px] font-display uppercase tracking-[0.2em] text-gold mb-2";
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-stretch justify-center overflow-y-auto md:items-center md:p-6"
+      style={{ background: "rgba(0, 8, 30, 0.85)", backdropFilter: "blur(6px)" }}
+      onClick={() => setOpen(false)}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-lg overflow-y-auto md:rounded-[4px]"
+        style={{
+          backgroundColor: "#001B5E",
+          border: "1px solid rgba(212, 175, 106, 0.4)",
+          boxShadow: "0 30px 80px rgba(0,0,0,0.5)",
+        }}
+      >
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          aria-label="Fechar"
+          className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-gold/40 text-gold transition-colors hover:bg-gold hover:text-sapphire-deep"
+        >
+          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+
+        <div className="px-6 pb-10 pt-12 md:px-10">
+          <div className="text-center">
+            <p className="section-label">L&rsquo;Orée</p>
+            <h3
+              className="mt-3 font-display text-2xl text-gold md:text-3xl"
+              style={{ letterSpacing: "0.05em" }}
+            >
+              Garantir Minha Unidade
+            </h3>
+            <p className="mt-3 text-sm font-light text-pearl/75">
+              Preencha seus dados para reservar seu Skin Revive
+            </p>
+            <div className="mx-auto mt-5 h-px w-16 bg-gold/60" />
+          </div>
+
+          <form onSubmit={onSubmit} className="mt-8 space-y-5" noValidate>
+            <div>
+              <label className={labelClass} htmlFor="om-nome">Nome completo</label>
+              <input
+                id="om-nome"
+                type="text"
+                autoComplete="name"
+                className={inputClass}
+                value={form.nome}
+                onChange={(e) => setForm({ ...form, nome: e.target.value })}
+              />
+              {errors.nome && <p className="mt-1 text-xs text-red-300">{errors.nome}</p>}
+            </div>
+
+            <div>
+              <label className={labelClass} htmlFor="om-email">E-mail</label>
+              <input
+                id="om-email"
+                type="email"
+                autoComplete="email"
+                className={inputClass}
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+              />
+              {errors.email && <p className="mt-1 text-xs text-red-300">{errors.email}</p>}
+            </div>
+
+            <div className="grid gap-5 md:grid-cols-2">
+              <div>
+                <label className={labelClass} htmlFor="om-zap">WhatsApp com DDD</label>
+                <input
+                  id="om-zap"
+                  type="tel"
+                  inputMode="numeric"
+                  autoComplete="tel"
+                  placeholder="(00) 00000-0000"
+                  className={inputClass}
+                  value={form.whatsapp}
+                  onChange={(e) => setForm({ ...form, whatsapp: maskPhone(e.target.value) })}
+                />
+                {errors.whatsapp && <p className="mt-1 text-xs text-red-300">{errors.whatsapp}</p>}
+              </div>
+              <div>
+                <label className={labelClass} htmlFor="om-cep">CEP</label>
+                <input
+                  id="om-cep"
+                  type="text"
+                  inputMode="numeric"
+                  autoComplete="postal-code"
+                  placeholder="00000000"
+                  className={inputClass}
+                  value={form.cep}
+                  onChange={(e) => setForm({ ...form, cep: maskCep(e.target.value) })}
+                />
+                {errors.cep && <p className="mt-1 text-xs text-red-300">{errors.cep}</p>}
+              </div>
+            </div>
+
+            <label className="flex cursor-pointer items-start gap-3 text-left">
+              <input
+                type="checkbox"
+                className="mt-0.5 h-4 w-4 shrink-0 accent-[#D4AF6A]"
+                checked={form.consent}
+                onChange={(e) => setForm({ ...form, consent: e.target.checked })}
+              />
+              <span className="text-xs font-light leading-relaxed text-pearl/80">
+                Concordo em receber novidades da L&rsquo;Orée por WhatsApp e e-mail
+              </span>
+            </label>
+            {errors.consent && <p className="-mt-3 text-xs text-red-300">{errors.consent}</p>}
+
+            <div
+              className="rounded-[3px] border px-4 py-4 text-left"
+              style={{ borderColor: "rgba(212,175,106,0.4)", background: "rgba(212,175,106,0.06)" }}
+            >
+              <p className="text-[10px] font-display uppercase tracking-[0.25em] text-gold">
+                Resumo do pedido
+              </p>
+              <p className="mt-2 text-sm font-light text-pearl/90">
+                Skin Revive Sérum Facial 30ml · <span className="text-gold">R$ 159,90</span> · Frete Grátis
+              </p>
+            </div>
+
+            <button
+              type="submit"
+              disabled={submitting}
+              className="btn-gold mt-2 w-full disabled:opacity-60"
+            >
+              {submitting ? "Processando..." : "Continuar para o pagamento"}
+            </button>
+
+            <div className="flex items-center justify-center gap-2 text-[11px] font-light uppercase tracking-[0.2em] text-pearl/60">
+              <LockIcon className="h-3.5 w-3.5 text-gold" />
+              <span>Pagamento 100% seguro via Mercado Pago</span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
