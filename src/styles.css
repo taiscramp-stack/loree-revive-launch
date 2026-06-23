@@ -73,7 +73,7 @@
   --gradient-gold: linear-gradient(135deg, oklch(0.82 0.09 80), oklch(0.72 0.10 78));
   --shadow-luxe: 0 30px 80px -20px oklch(0 0 0 / 0.6), 0 0 60px oklch(0.78 0.09 78 / 0.08);
   --shadow-gold: 0 10px 30px -10px oklch(0.78 0.09 78 / 0.45);
-  --shadow-product: 0 30px 60px -25px oklch(0 0 0 / 0.45);
+  --shadow-product: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
 .dark {
