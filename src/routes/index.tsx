@@ -189,6 +189,7 @@ function Landing() {
       <FAQ />
       <FinalCTA />
       <Footer />
+      <OrderModal />
     </main>
   );
 }
