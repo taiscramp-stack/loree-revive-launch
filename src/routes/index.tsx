@@ -54,20 +54,25 @@ function Particles({ count = 24 }: { count?: number }) {
 
 function Logo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
   const sizes = {
-    sm: { name: "text-3xl md:text-4xl", leaf: "h-3 w-4 -top-1 -right-3" },
-    md: { name: "text-6xl md:text-7xl", leaf: "h-5 w-6 md:h-6 md:w-8 -top-2 -right-5 md:-top-3 md:-right-6" },
+    sm: { name: "text-3xl md:text-4xl", leaf: "h-[18px] w-6 -top-2 -right-5" },
+    md: { name: "text-6xl md:text-7xl", leaf: "h-[18px] w-6 md:h-6 md:w-8 -top-2 -right-5 md:-top-3 md:-right-6" },
     lg: { name: "text-7xl md:text-8xl", leaf: "h-6 w-8 md:h-8 md:w-10 -top-3 -right-6 md:-top-4 md:-right-8" },
   }[size];
   return (
     <div className="flex flex-col items-center">
       <div className="relative inline-block">
         <span
-          className={`font-logo italic ${sizes.name} leading-none`}
-          style={{ color: "#D4AF6A" }}
+          className={`${sizes.name} leading-none`}
+          style={{
+            color: "#D4AF6A",
+            fontFamily: "'Cormorant Garamond', serif",
+            fontStyle: "italic",
+            fontWeight: 500,
+          }}
         >
           L&rsquo;Or&eacute;e
         </span>
-        <LeafIcon className={`absolute ${sizes.leaf} -rotate-12`} />
+        <LeafIcon className={`absolute ${sizes.leaf} rotate-45`} />
       </div>
       <div className="mt-3 h-px" style={{ width: "60px", backgroundColor: "#D4AF6A", opacity: 0.6 }} />
       <span
@@ -239,7 +244,7 @@ function Product() {
               width={1024}
               height={1536}
               loading="lazy"
-              className="relative mx-auto max-h-[820px] w-auto rounded-sm shadow-product"
+              className="relative mx-auto max-h-[984px] w-auto rounded-sm shadow-product"
             />
           </div>
         </Reveal>
@@ -500,6 +505,7 @@ function FinalCTA() {
           </p>
         </Reveal>
         <Reveal delay={500}>
+          {/* TODO: replace href="#" with the Mercado Pago payment link when ready */}
           <a href="#" className="btn-gold mt-12">
             Garantir agora — R$ 159,90
           </a>
