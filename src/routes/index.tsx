@@ -220,9 +220,7 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={600}>
-          <a href="#scarcity" className="btn-gold mt-12">
-            Garantir minha unidade
-          </a>
+          <CtaButton>Garantir minha unidade</CtaButton>
           <p className="mt-6 text-[11px] font-light uppercase tracking-[0.25em] text-pearl/60">
             Pré-venda exclusiva · Frete grátis · Apenas 20 unidades disponíveis
           </p>
