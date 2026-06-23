@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import bottleAsset from "@/assets/skin-revive-bottle.jpg.asset.json";
+import loreeLogo from "@/assets/loree-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Landing,
