@@ -54,9 +54,9 @@ function Particles({ count = 24 }: { count?: number }) {
 
 function Logo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
   const sizes = {
-    sm: { name: "text-3xl md:text-4xl", sub: "text-[9px]", line: "w-20", leaf: "h-3 w-4 -top-1 -right-3" },
-    md: { name: "text-6xl md:text-7xl", sub: "text-[11px] md:text-xs", line: "w-32 md:w-40", leaf: "h-5 w-6 md:h-6 md:w-8 -top-2 -right-5 md:-top-3 md:-right-6" },
-    lg: { name: "text-7xl md:text-8xl", sub: "text-xs md:text-sm", line: "w-40 md:w-52", leaf: "h-6 w-8 md:h-8 md:w-10 -top-3 -right-6 md:-top-4 md:-right-8" },
+    sm: { name: "text-3xl md:text-4xl", leaf: "h-3 w-4 -top-1 -right-3" },
+    md: { name: "text-6xl md:text-7xl", leaf: "h-5 w-6 md:h-6 md:w-8 -top-2 -right-5 md:-top-3 md:-right-6" },
+    lg: { name: "text-7xl md:text-8xl", leaf: "h-6 w-8 md:h-8 md:w-10 -top-3 -right-6 md:-top-4 md:-right-8" },
   }[size];
   return (
     <div className="flex flex-col items-center">
@@ -69,10 +69,10 @@ function Logo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
         </span>
         <LeafIcon className={`absolute ${sizes.leaf} -rotate-12`} />
       </div>
-      <div className={`mt-3 h-px ${sizes.line}`} style={{ backgroundColor: "#D4AF6A", opacity: 0.5 }} />
+      <div className="mt-3 h-px" style={{ width: "60px", backgroundColor: "#D4AF6A", opacity: 0.6 }} />
       <span
-        className={`mt-3 font-body font-light uppercase ${sizes.sub}`}
-        style={{ color: "#D4AF6A", letterSpacing: "0.3em" }}
+        className="mt-3 font-body font-light uppercase"
+        style={{ color: "#D4AF6A", letterSpacing: "0.35em", fontSize: "0.65rem" }}
       >
         Science &amp; Beaut&eacute;
       </span>
@@ -375,7 +375,7 @@ function Scarcity() {
         </Reveal>
 
         <Reveal delay={400}>
-          <a href="#final" className="btn-sapphire mt-12">
+          <a href="#final" className="btn-gold mt-12" style={{ background: "#001B5E", color: "#D4AF6A", borderColor: "#001B5E" }}>
             Quero garantir a minha
           </a>
         </Reveal>
