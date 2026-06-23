@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import bottleAsset from "@/assets/skin-revive-bottle.jpg.asset.json";
+import loreeLogo from "@/assets/loree-logo.jpeg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Landing,
@@ -53,27 +54,19 @@ function Particles({ count = 24 }: { count?: number }) {
 }
 
 function Logo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
-  const sizes = {
-    sm: { name: "text-3xl md:text-4xl", leaf: "h-[18px] w-6 -top-2 -right-5" },
-    md: { name: "text-6xl md:text-7xl", leaf: "h-[18px] w-6 md:h-6 md:w-8 -top-2 -right-5 md:-top-3 md:-right-6" },
-    lg: { name: "text-7xl md:text-8xl", leaf: "h-6 w-8 md:h-8 md:w-10 -top-3 -right-6 md:-top-4 md:-right-8" },
-  }[size];
+  const heights = { sm: 56, md: 112, lg: 144 }[size];
   return (
     <div className="flex flex-col items-center">
-      <div className="relative inline-block">
-        <span
-          className={`${sizes.name} leading-none`}
-          style={{
-            color: "#D4AF6A",
-            fontFamily: "'Cormorant Garamond', serif",
-            fontStyle: "italic",
-            fontWeight: 500,
-          }}
-        >
-          L&rsquo;Or&eacute;e
-        </span>
-        <LeafIcon className={`absolute ${sizes.leaf} rotate-45`} />
-      </div>
+      <img
+        src={loreeLogo.url}
+        alt="L'Orée"
+        style={{
+          height: heights,
+          width: "auto",
+          mixBlendMode: "screen",
+        }}
+        draggable={false}
+      />
       <div className="mt-3 h-px" style={{ width: "60px", backgroundColor: "#D4AF6A", opacity: 0.6 }} />
       <span
         className="mt-3 font-body font-light uppercase"
@@ -82,23 +75,6 @@ function Logo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
         Science &amp; Beaut&eacute;
       </span>
     </div>
-  );
-}
-
-function LeafIcon({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 40 28" fill="none" className={className} aria-hidden="true" style={{ color: "#D4AF6A" }}>
-      <path
-        d="M4 24 C 10 14, 20 4, 36 2 C 32 12, 22 22, 4 24 Z"
-        fill="currentColor"
-        opacity="0.95"
-      />
-      <path
-        d="M8 26 C 14 18, 24 10, 34 6 C 30 16, 22 24, 8 26 Z"
-        fill="currentColor"
-        opacity="0.7"
-      />
-    </svg>
   );
 }
 
