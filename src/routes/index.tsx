@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import bottleAsset from "@/assets/skin-revive-bottle.jpg.asset.json";
+import loreeLogo from "@/assets/loree-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Landing,
@@ -52,46 +53,22 @@ function Particles({ count = 24 }: { count?: number }) {
   );
 }
 
-function LeafIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 48 48"
-      className={`text-gold ${className}`}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.4}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M8 40 C 14 22, 26 10, 40 8 C 38 22, 28 36, 8 40 Z" />
-      <path d="M14 36 L34 14" />
-      <path d="M18 38 C 24 28, 34 18, 44 14 C 40 26, 32 36, 18 38 Z" />
-    </svg>
-  );
-}
-
 function Logo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
-  const textSize = { sm: "text-3xl", md: "text-6xl", lg: "text-7xl" }[size];
+  const heights = { sm: 48, md: 96, lg: 128 }[size];
   const subSize = { sm: "text-[9px]", md: "text-[11px]", lg: "text-xs" }[size];
-  const gap = { sm: "mt-1", md: "mt-2", lg: "mt-2" }[size];
-  const iconSize = { sm: "h-3.5 w-3.5", md: "h-[18px] w-[18px]", lg: "h-6 w-6" }[size];
-  const leafPos = { sm: "-top-2 -right-3.5", md: "-top-3 -right-6", lg: "-top-4 -right-7" }[size];
   return (
     <div className="flex flex-col items-center">
-      <div className="relative inline-block">
-        <span
-          className={`font-logo font-normal leading-none text-gold ${textSize}`}
-          style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}
-        >
-          L&rsquo;Or&eacute;e
-        </span>
-        <div className={`absolute ${leafPos} flex items-center justify-center`}>
-          <LeafIcon className={iconSize} />
-        </div>
-      </div>
-      <div className={`${gap} h-px`} style={{ width: "60px", backgroundColor: "#D4AF6A", opacity: 0.6 }} />
+      <img
+        src={loreeLogo.url}
+        alt="L'Orée"
+        width={530}
+        height={181}
+        style={{ height: heights, width: "auto" }}
+        draggable={false}
+      />
+      <div className="mt-3 h-px" style={{ width: "60px", backgroundColor: "#D4AF6A", opacity: 0.6 }} />
       <span
-        className={`${gap} ${subSize} font-body font-light uppercase`}
+        className={`mt-3 ${subSize} font-body font-light uppercase`}
         style={{ color: "#D4AF6A", letterSpacing: "0.35em" }}
       >
         Science &amp; Beaut&eacute;
