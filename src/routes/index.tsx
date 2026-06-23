@@ -379,9 +379,9 @@ function Scarcity() {
         </Reveal>
 
         <Reveal delay={400}>
-          <a href="#final" className="btn-gold mt-12" style={{ background: "#001B5E", color: "#D4AF6A", borderColor: "#001B5E" }}>
+          <CtaButton className="btn-gold mt-12" style={{ background: "#001B5E", color: "#D4AF6A", borderColor: "#001B5E" }}>
             Quero garantir a minha
-          </a>
+          </CtaButton>
         </Reveal>
       </div>
     </section>
