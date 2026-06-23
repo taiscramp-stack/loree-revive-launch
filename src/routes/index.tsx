@@ -504,10 +504,7 @@ function FinalCTA() {
           </p>
         </Reveal>
         <Reveal delay={500}>
-          {/* TODO: replace href="#" with the Mercado Pago payment link when ready */}
-          <a href="#" className="btn-gold mt-12">
-            Garantir agora — R$ 159,90
-          </a>
+          <CtaButton>Garantir agora — R$ 159,90</CtaButton>
           <p className="mt-8 text-xs font-light uppercase tracking-[0.25em] text-pearl/70">
             Instagram <span className="text-gold">@loreescience</span> · loreescience.com.br
           </p>
