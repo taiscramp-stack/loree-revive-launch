@@ -7,8 +7,7 @@ export const Route = createFileRoute("/")({
   component: Landing,
 });
 
-// TODO: replace with real Mercado Pago payment link
-const PAYMENT_LINK = "#payment-link";
+const PAYMENT_LINK = "https://mpago.li/29B6i3m";
 // TODO: replace with real webhook URL for capturing leads
 const WEBHOOK_URL = "#webhook-url";
 
@@ -370,7 +369,7 @@ function Scarcity() {
           <div className="mt-14 inline-flex flex-col items-center">
             <span className="font-display text-xs uppercase tracking-[0.35em] opacity-70">Investimento</span>
             <span className="mt-2 font-logo text-7xl font-medium text-sapphire-deep md:text-8xl">
-              R$ 159,90
+              R$ 189,90
             </span>
             <span className="mt-4 inline-flex items-center gap-2 rounded-full border border-sapphire-deep/40 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.25em]">
               ✦ Frete Grátis
@@ -504,7 +503,7 @@ function FinalCTA() {
           </p>
         </Reveal>
         <Reveal delay={500}>
-          <CtaButton>Garantir agora — R$ 159,90</CtaButton>
+          <CtaButton>Garantir agora — R$ 189,90</CtaButton>
           <p className="mt-8 text-xs font-light uppercase tracking-[0.25em] text-pearl/70">
             Instagram <span className="text-gold">@loreescience</span> · loreescience.com.br
           </p>
@@ -619,7 +618,7 @@ function OrderModal() {
       cep: form.cep,
       consent: form.consent,
       produto: "Skin Revive Sérum Facial 30ml",
-      valor: 159.9,
+      valor: 189.9,
       origem: "landing-loree",
       submittedAt: new Date().toISOString(),
     };
@@ -763,7 +762,7 @@ function OrderModal() {
                 Resumo do pedido
               </p>
               <p className="mt-2 text-sm font-light text-pearl/90">
-                Skin Revive Sérum Facial 30ml · <span className="text-gold">R$ 159,90</span> · Frete Grátis
+                Skin Revive Sérum Facial 30ml · <span className="text-gold">R$ 189,90</span> · Frete Grátis
               </p>
             </div>
 
