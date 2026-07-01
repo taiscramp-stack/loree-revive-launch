@@ -1,7 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode, type FormEvent } from "react";
 import bottleAsset from "@/assets/skin-revive-bottle.jpg.asset.json";
-import loreeLogo from "@/assets/loree-logo.png.asset.json";
+import loreeLogoAsset from "@/assets/loree-logo.png.asset.json";
+
+const ASSET_BASE = "https://loree-revive-launch.lovable.app";
+const bottleUrl = `${ASSET_BASE}${bottleAsset.url}`;
+const loreeLogo = { url: `${ASSET_BASE}${loreeLogoAsset.url}` };
 
 export const Route = createFileRoute("/")({
   component: Landing,
@@ -237,7 +241,7 @@ function Product() {
         <Reveal>
           <div className="relative">
             <img
-              src={bottleAsset.url}
+              src={bottleUrl}
               alt="Frasco Skin Revive Sérum Facial L'Orée 30ml"
               width={1024}
               height={1536}
