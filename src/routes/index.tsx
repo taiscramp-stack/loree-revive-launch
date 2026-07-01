@@ -241,7 +241,7 @@ function Product() {
         <Reveal>
           <div className="relative">
             <img
-              src={bottleAsset.url}
+              src={bottleUrl}
               alt="Frasco Skin Revive Sérum Facial L'Orée 30ml"
               width={1024}
               height={1536}
