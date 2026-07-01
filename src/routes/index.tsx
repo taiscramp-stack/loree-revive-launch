@@ -280,15 +280,15 @@ function Product() {
 
 function Ingredients() {
   const items = [
-    { icon: <MoleculeIcon />, name: "GHK-Cu Peptídeo de Cobre", desc: "Estimula a renovação celular e produção de colágeno." },
-    { icon: <DropletIcon />, name: "Ácido Hialurônico", desc: "Hidratação profunda e preenchimento de linhas." },
-    { icon: <ShieldIcon />, name: "Niacinamida B3", desc: "Uniformiza o tom e fortalece a barreira da pele." },
-    { icon: <LeafBenefitIcon />, name: "Glicoproteínas Vegetais do Milho", desc: "Aumentam firmeza e elasticidade." },
-    { icon: <WheatIcon />, name: "Peptídeo do Trigo", desc: "Ação preenchedora e protetora." },
+    { icon: <MoleculeIcon />, name: "GHK-Cu Peptídeo de Cobre", desc: "Estimula a renovação celular e a produção natural de colágeno." },
+    { icon: <DropletIcon />, name: "Ácido Hialurônico", desc: "Hidratação profunda que preenche linhas e repõe a umidade da pele." },
+    { icon: <ShieldIcon />, name: "Niacinamida B3", desc: "Uniformiza o tom, reduz a oleosidade e fortalece a barreira cutânea." },
+    { icon: <LeafBenefitIcon />, name: "Glicoproteínas Vegetais do Milho", desc: "Aumentam a firmeza e a elasticidade da pele de forma natural." },
+    { icon: <WheatIcon />, name: "Peptídeo do Trigo", desc: "Ação preenchedora e protetora para uma textura mais lisa." },
   ];
   return (
     <section className="relative bg-sapphire-deep px-6 py-28">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-5xl">
         <Reveal>
           <p className="section-label text-center">Formulation</p>
           <h2 className="mt-4 text-center font-display text-3xl text-pearl md:text-5xl">
@@ -297,14 +297,24 @@ function Ingredients() {
           <div className="mx-auto mt-8 h-px w-24 bg-gold/60" />
         </Reveal>
 
-        <div className="mt-20 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-20">
           {items.map((it, i) => (
             <Reveal key={it.name} delay={i * 100}>
-              <article className="group h-full rounded-sm border border-gold/20 bg-sapphire/40 p-8 backdrop-blur transition-all duration-500 hover:border-gold/60 hover:bg-sapphire/70">
-                <div className="mb-6 transition-transform duration-500 group-hover:scale-110">{it.icon}</div>
-                <h3 className="font-display text-base uppercase tracking-[0.15em] text-gold">{it.name}</h3>
-                <p className="mt-4 text-sm font-light leading-relaxed text-pearl/75">{it.desc}</p>
-              </article>
+              <div>
+                <div className="flex flex-col items-start gap-6 py-8 md:flex-row md:items-center md:gap-10">
+                  <div className="flex shrink-0 items-center gap-5 md:gap-8">
+                    <div className="text-gold">{it.icon}</div>
+                    <span className="max-w-[180px] font-display text-sm uppercase tracking-[0.15em] text-gold md:text-base">
+                      {it.name}
+                    </span>
+                  </div>
+                  <div className="hidden h-10 w-px bg-gold/40 md:block" />
+                  <p className="text-sm font-light leading-relaxed text-pearl/80 md:text-base">
+                    {it.desc}
+                  </p>
+                </div>
+                {i < items.length - 1 && <div className="gold-divider" />}
+              </div>
             </Reveal>
           ))}
         </div>
