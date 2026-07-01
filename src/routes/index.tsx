@@ -304,7 +304,7 @@ function Ingredients() {
                 <div className="flex flex-col items-start gap-6 py-8 md:flex-row md:items-center md:gap-10">
                   <div className="flex shrink-0 items-center gap-5 md:gap-8">
                     <div className="text-gold">{it.icon}</div>
-                    <span className="max-w-[180px] font-display text-sm uppercase tracking-[0.15em] text-gold md:text-base">
+                    <span className="w-[300px] shrink-0 font-display text-sm uppercase tracking-[0.15em] text-gold md:text-base">
                       {it.name}
                     </span>
                   </div>
