@@ -214,7 +214,7 @@ function Hero() {
             Skin Revive Sérum Facial
           </p>
           <p className="mt-3 max-w-2xl text-sm font-light text-pearl/80 md:text-base">
-            Primeiro lote · 20 unidades · Lançamento 07.07
+            Primeiro lote · 20 unidades · Lançamento 15.07
           </p>
         </Reveal>
 
@@ -443,7 +443,7 @@ function FAQ() {
     { q: "Para qual tipo de pele é indicado?", a: "Todos os tipos de pele." },
     { q: "Como usar?", a: "Aplique 3 a 5 gotas sobre a pele limpa, de manhã e/ou à noite. Massageie suavemente até absorção completa." },
     { q: "Quando verei resultados?", a: "Os primeiros resultados podem ser percebidos a partir de 2 a 4 semanas de uso contínuo." },
-    { q: "Como funciona a pré-venda?", a: "Você realiza o pagamento agora e recebe o produto assim que o primeiro lote for entregue, previsto para 07 de julho." },
+    { q: "Como funciona a pré-venda?", a: "Você realiza o pagamento agora e recebe o produto assim que o primeiro lote for entregue, previsto para 15 de julho." },
     { q: "E se eu quiser devolver?", a: "Garantimos satisfação total. Em caso de qualquer problema, entre em contato pelo Instagram @loreescience." },
   ];
   const [open, setOpen] = useState<number | null>(0);
