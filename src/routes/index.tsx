@@ -13,7 +13,7 @@ export const Route = createFileRoute("/")({
 
 const PAYMENT_LINK = "https://mpago.li/29B6i3m";
 // TODO: replace with real webhook URL for capturing leads
-const WEBHOOK_URL = "#webhook-url";
+const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwk6iIgeDU-_820iG8jtzS8dncMl5-F7gh3Hc005NxN3-bBIGRTi4mAS8rpZqmiJfzQ/exec";
 
 function openOrderModal() {
   window.dispatchEvent(new CustomEvent("open-order-modal"));
