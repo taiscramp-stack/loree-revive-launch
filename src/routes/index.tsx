@@ -186,7 +186,9 @@ function Landing() {
       <Ingredients />
       <Divider />
       <Benefits />
-      <Scarcity />
+      <Divider />
+      <Testimonials />
+      <Price />
       <Mission />
       <Divider />
       <FAQ />
@@ -218,12 +220,12 @@ function Hero() {
             Skin Revive Sérum Facial
           </p>
           <p className="mt-3 max-w-2xl text-sm font-light text-pearl/80 md:text-base">
-            Primeiro lote · 20 unidades · Envio imediato
+            Tecnologia GHK-Cu · Resultados visíveis · Envio imediato
           </p>
         </Reveal>
 
         <Reveal delay={600}>
-          <CtaButton>Garantir minha unidade</CtaButton>
+          <CtaButton>Quero meu Skin Revive</CtaButton>
           <p className="mt-6 text-[11px] font-light uppercase tracking-[0.25em] text-pearl/60">
             Disponível agora · Frete grátis · Apenas 20 unidades
           </p>
@@ -363,38 +365,85 @@ function Benefits() {
   );
 }
 
-function Scarcity() {
+function QuoteIcon({ className = "" }: { className?: string }) {
   return (
-    <section id="scarcity" className="relative overflow-hidden bg-gold-gradient px-6 py-28">
-      <div className="mx-auto max-w-3xl text-center text-sapphire-deep">
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M10 8c-3 1-5 3.5-5 7v1h5v-6H7.5C8 9 9 8.5 10 8.2V8zm9 0c-3 1-5 3.5-5 7v1h5v-6h-2.5c.5-1 1.5-1.5 2.5-1.8V8z" />
+    </svg>
+  );
+}
+
+function Testimonials() {
+  const items = [
+    { name: "Iraci", source: "Instagram & WhatsApp", text: "Milagroso, minha pele ficou maravilhosa! Estou no segundo vidro indo pro terceiro — tenho 60 anos e estou muito feliz, pele maravilhosa e rosto bem idratado." },
+    { name: "Nathalia", source: "WhatsApp", text: "Simplesmente amando o sérum, já tem 20 dias que estou usando certinho e já vi minha pele sedosa e iluminada! Já faz um tempinho que estava atrás de um sérum realmente bom que entrega resultado — e ele me encontrou." },
+    { name: "Fran", source: "WhatsApp", text: "Em 40 dias de uso já deu a diferença — as linhas estão mais suaves, a pele macia está maravilhosa! Super indico." },
+    { name: "Vanessa", source: "WhatsApp", text: "3 dias e eu noto diferença. Deixa a pele aspecto macio aveludado, as linhas parece que diminuiu." },
+    { name: "Marli Nunes", source: "Instagram", text: "O produto criado por ela é simplesmente divino. Rosto fica porcelana." },
+  ];
+  return (
+    <section className="relative bg-sapphire-deep px-6 py-28">
+      <div className="mx-auto max-w-6xl">
         <Reveal>
-          <p className="section-label">Édition Limitée</p>
-          <h2 className="mt-6 font-display text-sapphire-deep">
-            <span className="block text-3xl uppercase tracking-[0.2em] md:text-4xl">Apenas</span>
-            <span className="mt-2 block font-logo text-[11rem] font-medium leading-none italic md:text-[16rem]">20</span>
-            <span className="mt-2 block text-3xl uppercase tracking-[0.2em] md:text-4xl">Unidades</span>
+          <p className="section-label text-center">Témoignages</p>
+          <h2 className="mt-4 text-center font-display text-3xl text-pearl md:text-5xl">
+            Depoimentos Reais
           </h2>
-          <p className="mx-auto mt-8 max-w-xl text-base font-light leading-relaxed opacity-90 md:text-lg">
-            Este é o primeiro lote da L&rsquo;Orée. Uma vez esgotado, o próximo lote não tem data confirmada.
-          </p>
+          <div className="mx-auto mt-8 h-px w-24 bg-gold/60" />
         </Reveal>
 
-        <Reveal delay={200}>
-          <div className="mt-14 inline-flex flex-col items-center">
-            <span className="font-display text-xs uppercase tracking-[0.35em] opacity-70">Investimento</span>
-            <span className="mt-2 font-logo text-7xl font-medium text-sapphire-deep md:text-8xl">
+        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {items.map((it, i) => (
+            <Reveal key={it.name} delay={i * 100} className={i === 4 ? "md:col-span-2 lg:col-span-1" : ""}>
+              <figure
+                className="flex h-full flex-col rounded-[3px] border p-8 transition-all duration-500 hover:border-gold/70"
+                style={{ borderColor: "rgba(212,175,106,0.3)", background: "rgba(212,175,106,0.04)" }}
+              >
+                <QuoteIcon className="h-7 w-7 text-gold" />
+                <blockquote className="mt-5 flex-1 font-logo text-lg italic leading-relaxed text-pearl/90">
+                  &ldquo;{it.text}&rdquo;
+                </blockquote>
+                <figcaption className="mt-6">
+                  <div className="h-px w-10 bg-gold/60" />
+                  <p className="mt-4 font-display text-sm uppercase tracking-[0.2em] text-gold">
+                    {it.name}
+                  </p>
+                  <p className="mt-1 text-[11px] font-light uppercase tracking-[0.2em] text-pearl/50">
+                    via {it.source}
+                  </p>
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Price() {
+  return (
+    <section id="preco" className="relative overflow-hidden bg-gold-gradient px-6 py-28">
+      <div className="mx-auto max-w-3xl text-center text-sapphire-deep">
+        <Reveal>
+          <p className="section-label">Investimento</p>
+          <div className="mt-10 inline-flex flex-col items-center">
+            <span className="font-logo text-7xl font-medium text-sapphire-deep md:text-8xl">
               R$ 189,90
             </span>
-            <span className="mt-4 inline-flex items-center gap-2 rounded-full border border-sapphire-deep/40 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.25em]">
-              ✦ Frete Grátis
+            <span className="mt-4 text-sm font-light tracking-wide opacity-80 md:text-base">
+              Skin Revive Sérum Facial · 30ml
             </span>
           </div>
         </Reveal>
 
-        <Reveal delay={400}>
+        <Reveal delay={200}>
           <CtaButton className="btn-gold mt-12" style={{ background: "#001B5E", color: "#D4AF6A", borderColor: "#001B5E" }}>
-            Quero garantir a minha
+            Quero meu Skin Revive
           </CtaButton>
+          <p className="mt-6 text-[11px] font-light uppercase tracking-[0.25em] opacity-70">
+            O valor do frete será informado após o pedido
+          </p>
         </Reveal>
       </div>
     </section>
@@ -517,7 +566,7 @@ function FinalCTA() {
           </p>
         </Reveal>
         <Reveal delay={500}>
-          <CtaButton>Garantir agora — R$ 189,90</CtaButton>
+          <CtaButton>Quero meu Skin Revive — R$ 189,90</CtaButton>
           <p className="mt-8 text-xs font-light uppercase tracking-[0.25em] text-pearl/70">
             Instagram <span className="text-gold">@loreescience</span> · loreescience.com.br
           </p>
@@ -776,7 +825,7 @@ function OrderModal() {
                 Resumo do pedido
               </p>
               <p className="mt-2 text-sm font-light text-pearl/90">
-                Skin Revive Sérum Facial 30ml · <span className="text-gold">R$ 189,90</span> · Frete Grátis
+                Skin Revive Sérum Facial 30ml · <span className="text-gold">R$ 189,90</span> · Frete calculado por região
               </p>
             </div>
 
