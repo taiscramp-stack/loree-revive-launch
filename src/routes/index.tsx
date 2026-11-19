@@ -2,10 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode, type FormEvent } from "react";
 import bottleAsset from "@/assets/skin-revive-bottle.jpg.asset.json";
 import loreeLogoAsset from "@/assets/loree-logo.png.asset.json";
+import transformacao1Asset from "@/assets/transformacao-1.jpeg.asset.json";
+import transformacao2Asset from "@/assets/transformacao-2.jpeg.asset.json";
+import transformacao3Asset from "@/assets/transformacao-3.jpeg.asset.json";
 
 const ASSET_BASE = "https://loree-revive-launch.lovable.app";
 const bottleUrl = `${ASSET_BASE}${bottleAsset.url}`;
 const loreeLogo = { url: `${ASSET_BASE}${loreeLogoAsset.url}` };
+const transformacaoUrls = [transformacao1Asset, transformacao2Asset, transformacao3Asset].map(
+  (a) => `${ASSET_BASE}${a.url}`,
+);
 
 export const Route = createFileRoute("/")({
   component: Landing,
@@ -187,6 +193,7 @@ function Landing() {
       <Divider />
       <Benefits />
       <Divider />
+      <Transformation />
       <Testimonials />
       <Price />
       <Mission />
@@ -357,6 +364,48 @@ function Benefits() {
               <p className="mt-5 text-xs font-light uppercase tracking-[0.18em] text-pearl/85">
                 {it.text}
               </p>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Transformation() {
+  return (
+    <section className="relative bg-sapphire-deep px-6 py-28">
+      <div className="mx-auto max-w-6xl">
+        <Reveal>
+          <p className="section-label text-center">Transformation</p>
+          <h2 className="mt-4 text-center font-display text-3xl text-pearl md:text-5xl">
+            Resultados Reais. <span className="text-gold">Sem Filtro.</span>
+          </h2>
+          <p className="mt-6 text-center font-display text-xs uppercase tracking-[0.3em] text-gold-soft md:text-sm">
+            Antes 16/07 · Depois 29/10 — 103 dias de uso contínuo
+          </p>
+          <div className="mx-auto mt-8 h-px w-24 bg-gold/60" />
+        </Reveal>
+
+        <div className="mt-16 grid gap-8 md:grid-cols-3">
+          {transformacaoUrls.map((url, i) => (
+            <Reveal key={url} delay={i * 120}>
+              <figure
+                className="overflow-hidden rounded-[3px] border transition-all duration-500 hover:border-gold/70 hover:shadow-gold"
+                style={{ borderColor: "rgba(212,175,106,0.4)", background: "rgba(212,175,106,0.04)" }}
+              >
+                <img
+                  src={url}
+                  alt={`Antes e depois Skin Revive — foto ${i + 1}`}
+                  width={720}
+                  height={1280}
+                  loading="lazy"
+                  className="w-full object-cover"
+                />
+                <figcaption className="px-5 py-4 text-center text-[11px] font-light uppercase tracking-[0.2em] text-pearl/60">
+                  Fundadora L&rsquo;Orée — uso próprio diário
+                </figcaption>
+              </figure>
             </Reveal>
           ))}
         </div>
