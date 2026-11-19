@@ -429,6 +429,7 @@ function Testimonials() {
     { name: "Fran", source: "WhatsApp", text: "Em 40 dias de uso já deu a diferença — as linhas estão mais suaves, a pele macia está maravilhosa! Super indico." },
     { name: "Vanessa", source: "WhatsApp", text: "3 dias e eu noto diferença. Noto melhor a pele." },
     { name: "Marli Nunes", source: "Instagram", text: "O produto criado por ela é simplesmente divino. Rosto fica porcelana." },
+    { name: "Cristiane", source: "WhatsApp", text: "Eu amei! Usei a primeira noite e usei pela manhã e passei protetor solar, e já sinto a pele outra coisa!" },
   ];
   return (
     <section className="relative bg-sapphire-deep px-6 py-28">
@@ -443,7 +444,7 @@ function Testimonials() {
 
         <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {items.map((it, i) => (
-            <Reveal key={it.name} delay={i * 100} className={i === 4 ? "md:col-span-2 lg:col-span-1" : ""}>
+            <Reveal key={it.name} delay={i * 100}>
               <figure
                 className="flex h-full flex-col rounded-[3px] border p-8 transition-all duration-500 hover:border-gold/70"
                 style={{ borderColor: "rgba(212,175,106,0.3)", background: "rgba(212,175,106,0.04)" }}
