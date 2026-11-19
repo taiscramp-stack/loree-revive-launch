@@ -234,7 +234,7 @@ function Hero() {
         <Reveal delay={600}>
           <CtaButton>Quero meu Skin Revive</CtaButton>
           <p className="mt-6 text-[11px] font-light uppercase tracking-[0.25em] text-pearl/60">
-            Disponível agora · Frete grátis · Apenas 20 unidades
+            Disponível agora · Pagamento 100% seguro
           </p>
         </Reveal>
       </div>
