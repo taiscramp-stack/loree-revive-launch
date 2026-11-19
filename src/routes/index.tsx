@@ -447,7 +447,7 @@ function FAQ() {
     { q: "Para qual tipo de pele é indicado?", a: "Todos os tipos de pele." },
     { q: "Como usar?", a: "Aplique 3 a 5 gotas sobre a pele limpa, de manhã e/ou à noite. Massageie suavemente até absorção completa." },
     { q: "Quando verei resultados?", a: "Os primeiros resultados podem ser percebidos a partir de 2 a 4 semanas de uso contínuo." },
-    { q: "Como funciona a pré-venda?", a: "Você realiza o pagamento agora e o produto é enviado assim que o pagamento for confirmado. Estoque disponível para despacho imediato." },
+    { q: "Como funciona a compra?", a: "Você realiza o pagamento agora e o produto é enviado assim que o pagamento for confirmado. Estoque disponível para despacho imediato." },
     { q: "E se eu quiser devolver?", a: "Garantimos satisfação total. Em caso de qualquer problema, entre em contato pelo Instagram @loreescience." },
   ];
   const [open, setOpen] = useState<number | null>(0);
