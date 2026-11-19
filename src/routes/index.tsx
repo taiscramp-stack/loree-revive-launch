@@ -427,7 +427,7 @@ function Testimonials() {
     { name: "Iraci", source: "Instagram & WhatsApp", text: "Milagroso, minha pele ficou maravilhosa! Estou no segundo vidro indo pro terceiro — tenho 60 anos e estou muito feliz, pele maravilhosa e rosto bem idratado." },
     { name: "Nathalia", source: "WhatsApp", text: "Simplesmente amando o sérum, já tem 20 dias que estou usando certinho e já vi minha pele sedosa e iluminada! Já faz um tempinho que estava atrás de um sérum realmente bom que entrega resultado — e ele me encontrou." },
     { name: "Fran", source: "WhatsApp", text: "Em 40 dias de uso já deu a diferença — as linhas estão mais suaves, a pele macia está maravilhosa! Super indico." },
-    { name: "Vanessa", source: "WhatsApp", text: "3 dias e eu noto diferença. Deixa a pele aspecto macio aveludado, as linhas parece que diminuiu." },
+    { name: "Vanessa", source: "WhatsApp", text: "3 dias e eu noto diferença. Noto melhor a pele." },
     { name: "Marli Nunes", source: "Instagram", text: "O produto criado por ela é simplesmente divino. Rosto fica porcelana." },
   ];
   return (
